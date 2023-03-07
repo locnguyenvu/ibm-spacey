@@ -63,11 +63,11 @@ def get_pie_chart(entered_site):
               Input(component_id="payload-slider", component_property="value"))
 def scatter(launch_site, payload):
     if launch_site == 'ALL':
-        fig = px.scatter(spacex_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
+        fig = px.scatter(spacex_df[(spacex_df['Payload Mass (kg)'] >= payload[0]) & (spacex_df['Payload Mass (kg)'] <= payload[1])], x='Payload Mass (kg)', y='class', color='Booster Version Category')
         return fig
     else:
         filterd_df = spacex_df[spacex_df['Launch Site'] == launch_site]
-        fig = px.scatter(filterd_df, x='Payload Mass (kg)', y='class', color='Booster Version Category')
+        fig = px.scatter(filterd_df[(filterd_df['Payload Mass (kg)'] >= payload[0]) & (filterd_df['Payload Mass (kg)'] <= payload[1])], x='Payload Mass (kg)', y='class', color='Booster Version Category')
         return fig
 
 
